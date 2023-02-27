@@ -50,7 +50,7 @@ jobs:
       - name: Create 7z Release
         uses: DuckSoft/create-7z-action@v1.0
         with:
-          pathSource: ./project/tordnscrypt/build/outputs/apk/release/
+          pathSource: ./project/app/build/outputs/apk/release/
           pathTarget: ./release.7z
 
       - name: Upload APK
