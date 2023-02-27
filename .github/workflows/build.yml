@@ -27,7 +27,7 @@ jobs:
 
       - name: Install latest build tools
         run: |
-          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "build-tools;34.0.0" --sdk_root=${ANDROID_SDK_ROOT}
+          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "build-tools;33.0.2" --sdk_root=${ANDROID_SDK_ROOT}
 
       - name: Install NDK
         run: |
@@ -45,12 +45,12 @@ jobs:
         run: |
           if [ ! -f "gradlew" ]; then gradle wrapper; fi
           chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleRelease --stacktrace
 
       - name: Create 7z Release
         uses: DuckSoft/create-7z-action@v1.0
         with:
-          pathSource: ./project/app/build/outputs/apk/debug/
+          pathSource: ./project/app/build/outputs/apk/release/
           pathTarget: ./release.7z
 
       - name: Upload APK
@@ -58,6 +58,7 @@ jobs:
         with:
           name: my-build-apk.7z
           path: release.7z
+          if-no-files-found: error
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
