@@ -41,6 +41,7 @@ jobs:
       - name: Build the app
         working-directory: ./project
         run: |
+          cd PipePipeClient
           if [ ! -f "gradlew" ]; then gradle wrapper; fi
           chmod +x gradlew
           ./gradlew assembleRelease --stacktrace
