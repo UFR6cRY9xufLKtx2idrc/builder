@@ -30,27 +30,13 @@ jobs:
         
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-
-      - id: get-project
-        name: Get project name
-        run: echo "PROJECT=$(cat project-to-build)" >> $GITHUB_OUTPUT
         
       - name: Clone project
         run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
-
-      - id: get-project2
-        name: Get project name
-        run: echo "PROJECT=$(cat project-to-build2)" >> $GITHUB_OUTPUT
-        
-      - name: Clone project2
-        run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
-
-      - id: get-project3
-        name: Get project name
-        run: echo "PROJECT=$(cat project-to-build3)" >> $GITHUB_OUTPUT
-        
-      - name: Clone project3
-        run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
+        run: |
+          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipe project/PipePipe
+          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipeClient project/PipePipeClient
+          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipeExtractor project/PipePipeExtractor
         
       - name: Build the app
         working-directory: ./project
