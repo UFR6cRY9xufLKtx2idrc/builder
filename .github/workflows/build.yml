@@ -37,10 +37,25 @@ jobs:
         
       - name: Clone project
         run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
+
+      - id: get-project2
+        name: Get project name
+        run: echo "PROJECT=$(cat project-to-build2)" >> $GITHUB_OUTPUT
+        
+      - name: Clone project2
+        run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
+
+      - id: get-project3
+        name: Get project name
+        run: echo "PROJECT=$(cat project-to-build3)" >> $GITHUB_OUTPUT
+        
+      - name: Clone project3
+        run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
         
       - name: Build the app
         working-directory: ./project
         run: |
+          cd PipePipeClient
           if [ ! -f "gradlew" ]; then gradle wrapper; fi
           chmod +x gradlew
           ./gradlew assembleRelease --stacktrace
