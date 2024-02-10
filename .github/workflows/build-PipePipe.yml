@@ -51,28 +51,28 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PipePipe-armeabi-v7a-release-unsigned-${{ github.sha }}
-          path: project/PipePipeClient/app/build/outputs/apk/release\PipePipe_*-armeabi-v7a-release-unsigned.apk
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-armeabi-v7a-release-unsigned.apk
           if-no-files-found: error
 
       - name: Upload x86_64
         uses: actions/upload-artifact@v4
         with:
           name: PipePipe-x86_64-release-unsigned-${{ github.sha }}
-          path: project/PipePipeClient/app/build/outputs/apk/release\PipePipe_*-x86_64-release-unsigned.apk
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-x86_64-release-unsigned.apk
           if-no-files-found: error
 
       - name: Upload x86
         uses: actions/upload-artifact@v4
         with:
           name: PipePipe-arm64-x86-unsigned-${{ github.sha }}
-          path: project/PipePipeClient/app/build/outputs/apk/release\PipePipe_*-x86-release-unsigned.apk
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-x86-release-unsigned.apk
           if-no-files-found: error
 
       - name: Upload universal
         uses: actions/upload-artifact@v4
         with:
           name: PipePipe-universal-release-unsigned-${{ github.sha }}
-          path: project/PipePipeClient/app/build/outputs/apk/release\PipePipe_*-universal-release-unsigned.apk
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-universal-release-unsigned.apk
           if-no-files-found: error
 
       - name: Rename Apks
