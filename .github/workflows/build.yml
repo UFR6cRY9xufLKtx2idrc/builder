@@ -30,17 +30,17 @@ jobs:
         
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+
+      - id: get-project
+        name: Get project name
+        run: echo "PROJECT=$(cat project-to-build)" >> $GITHUB_OUTPUT
         
       - name: Clone project
-        run: |
-          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipe project/PipePipe
-          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipeClient project/PipePipeClient
-          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipeExtractor project/PipePipeExtractor
+        run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
         
       - name: Build the app
         working-directory: ./project
         run: |
-          cd PipePipeClient
           if [ ! -f "gradlew" ]; then gradle wrapper; fi
           chmod +x gradlew
           ./gradlew assembleRelease --stacktrace
@@ -48,7 +48,7 @@ jobs:
       - name: Create 7z Release
         uses: DuckSoft/create-7z-action@v1.0
         with:
-          pathSource: ./project/PipePipeClient/app/build/outputs/apk/release/
+          pathSource: ./project/app/build/outputs/apk/release/
           pathTarget: ./release.7z
 
       - name: Upload APK
