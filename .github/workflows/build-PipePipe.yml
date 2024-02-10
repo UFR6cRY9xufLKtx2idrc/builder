@@ -77,20 +77,20 @@ jobs:
 
       - name: Rename Apks
         run: |
+          ls -l
+          cd project
           ls
-          cd /project
+          cd PipePipeClient
           ls
-          cd /project/PipePipeClient
+          cd app
           ls
-          cd /project/PipePipeClient/app
+          cd build
           ls
-          cd /project/PipePipeClient/app/build
+          cd outputs
           ls
-          cd /project/PipePipeClient/app/build/outputs
+          cd apk
           ls
-          cd /project/PipePipeClient/app/build/outputs/apk
-          ls
-          cd /project/PipePipeClient/app/build/outputs/apk/release
+          cd release
           ls
           rename -v 's/.-release-unsigned\.apk/.-release-unsigned-${{ github.run_number }}\.apk/' *
 
