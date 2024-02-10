@@ -79,7 +79,7 @@ jobs:
         run: |
           sudo apt-get install rename
           cd /home/runner/work/builder/builder/project/PipePipeClient/app/build/outputs/apk/release
-          rename -v 's/.-release-unsigned\.apk/.-release-unsigned-${{ github.run_number }}\.apk/' *
+          rename -v 's/-release-unsigned\.apk/-release-unsigned-${{ github.run_number }}\.apk/' *
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
