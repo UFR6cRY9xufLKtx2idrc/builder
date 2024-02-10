@@ -76,7 +76,15 @@ jobs:
           if-no-files-found: error
 
       - name: Rename Apks
-        run: mv project/PipePipeClient/app/build/outputs/apk/release/*-release-unsigned.apk *-release-unsigned-${{ github.run_number }}.apk
+        run: |
+          cd project
+          cd PipePipeClient
+          cd app
+          cd build
+          cd outputs
+          cd apk
+          cd release
+          mv *-release-unsigned.apk *-release-unsigned-${{ github.run_number }}.apk
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
