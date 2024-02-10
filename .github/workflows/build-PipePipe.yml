@@ -1,0 +1,58 @@
+name: PipePipe_build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 11
+          check-latest: true
+        
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        
+      - name: Clone project
+        run: |
+          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipe project/PipePipe
+          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipeClient project/PipePipeClient
+          git clone --depth=1 https://codeberg.org/NullPointerException/PipePipeExtractor project/PipePipeExtractor
+        
+      - name: Build the app
+        working-directory: ./project
+        run: |
+          cd PipePipeClient
+          if [ ! -f "gradlew" ]; then gradle wrapper; fi
+          chmod +x gradlew
+          ./gradlew assembleRelease --stacktrace
+
+      - name: Uploading Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: project/PipePipeClient/app/build/outputs/apk/release/
+          if-no-files-found: error
+
+      - name: Rename Apks
+        run: rename -v 's/.-release-unsigned\.apk/.-release-unsigned-${{ github.run_number }}\.apk/' *
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-release-unsigned-${{ github.run_number }}.apk
+          tag: ${{ github.ref }}-PipePipe
+          overwrite: true
