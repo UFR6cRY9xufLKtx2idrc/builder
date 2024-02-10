@@ -77,7 +77,7 @@ jobs:
 
       - name: Rename Apks
         run: |
-          apt-get install util-linux
+          sudo apt-get install util-linux
           cd project
           cd PipePipeClient
           cd app
