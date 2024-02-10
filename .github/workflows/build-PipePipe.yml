@@ -77,15 +77,9 @@ jobs:
 
       - name: Rename Apks
         run: |
-          pwd
-          cd project
-          cd PipePipeClient
-          cd app
-          cd build
-          cd outputs
-          cd apk
-          cd release
+          cd /home/runner/work/builder/builder/project/PipePipeClient/app/build/outputs/apk/release
           mv --no-target-directory *-release-unsigned.apk *-release-unsigned-${{ github.run_number }}.apk
+          mv --help
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
