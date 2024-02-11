@@ -88,3 +88,4 @@ jobs:
           file: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-release-unsigned-${{ github.run_number }}.apk
           tag: ${{ github.ref }}-PipePipe
           overwrite: true
+          file_glob: true
