@@ -23,16 +23,14 @@ jobs:
           java-version: 11
           check-latest: true
         
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        
       - name: Clone project
         run: |
           git clone --depth=1 https://github.com/UFR6cRY9xufLKtx2idrc/glide
         
       - name: Build with Maven
-        working-directory: ./project
+        working-directory: glide
         run: |
+          pwd
           cd integration
           cd avif
           mvn clean package -DskipTests
