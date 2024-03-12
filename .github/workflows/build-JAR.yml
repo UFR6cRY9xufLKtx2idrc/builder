@@ -1,0 +1,55 @@
+name: JAR_build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 11
+          check-latest: true
+        
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        
+      - name: Clone project
+        run: |
+          git clone --depth=1 https://github.com/UFR6cRY9xufLKtx2idrc/glide
+        
+      - name: Build with Maven
+        working-directory: ./project
+        run: |
+          cd integration
+          cd avif
+          mvn clean package -DskipTests
+
+      - name: Upload JAR file
+        uses: actions/upload-artifact@v4
+        with:
+          name: avif-integration
+          path: project/glide/integration/avif/target/*.jar
+          if-no-files-found: error
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: project/glide/integration/avif/target/*.jar
+          asset_name: avif-integration-${{ github.run_number }}.jar
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
