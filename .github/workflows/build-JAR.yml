@@ -29,9 +29,6 @@ jobs:
           cd glide
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
-          git revert 193cf61354cc01f38b15bf1605905b49a19e6b7a
-          git revert fcace5be3c7edbc85af99183b64438997051b06c
-          git revert 8ca2db2e898cf3c7acfd9de6a310ff4ec40d10dc
           git revert e85c7656ccb908ab0bb6a4fd7706029a51048535
           git revert 35bf5a58ae2a7662c1cdec8dab06d48795dba7d2
           git revert 17620f51ddef06cbf96ea6fcfad137fd51332fd5
