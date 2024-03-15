@@ -32,7 +32,6 @@ jobs:
           git stash
           git remote add glide2 https://github.com/bumptech/glide
           git fetch glide2
-          git log glide2/master
           git checkout v4.15.1
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
