@@ -29,7 +29,7 @@ jobs:
           git remote add glide1 /home/runner/work/builder/builder/glide
           git remote add glide2 https://github.com/bumptech/glide
           git remote
-          git fetch glide2
+          git fetch glide2/master
           git branch -a
           git checkout -b glide_master glide1/master
           git checkout glide_master
@@ -37,7 +37,7 @@ jobs:
           git config --global user.name "Your Name"
           git cherry-pick 0be8073f272ea9440640b4fb20595a30d76d541b
           git cherry-pick 3bbc3908edd8432f55ccfae3257bad533c1bf7d1
-          git push
+          git push glide_master glide1
 
       - name: Gradle Build
         uses: gradle/actions/setup-gradle@v3
