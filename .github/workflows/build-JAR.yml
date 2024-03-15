@@ -39,7 +39,7 @@ jobs:
       - name: Create 7z Release
         uses: DuckSoft/create-7z-action@v1.0
         with:
-          pathSource: ./project/glide/
+          pathSource: /home/runner/work/builder/builder/glide/
           pathTarget: ./glide.7z
 
       - name: Upload JAR file
