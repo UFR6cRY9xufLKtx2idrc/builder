@@ -29,7 +29,7 @@ jobs:
           git remote add glide2 https://github.com/bumptech/glide
           git fetch glide2
           git log glide2/master
-          git checkout master
+          git checkout compose_alpha_6
           git cherry-pick 06fc8f689c0936ee570ed3e31ae2d6a1ff019fe9
           git cherry-pick 3bbc3908edd8432f55ccfae3257bad533c1bf7d1
 
