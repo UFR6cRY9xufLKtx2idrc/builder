@@ -27,12 +27,14 @@ jobs:
         run: |
           git clone --depth=1 --branch=compose-alpha6 https://github.com/bumptech/glide.git
           cd glide
+          git checkout compose-alpha6
+          git branch | xargs git branch -d
           git add build.gradle
           git add gradle.properties
           git stash
           git remote add glide2 https://github.com/bumptech/glide
           git fetch glide2
-          git checkout 2e7ba2eaf66ff0d9b383b4455a689095e55492ad
+          git checkout compose-alpha6
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
           git cherry-pick 06fc8f689c0936ee570ed3e31ae2d6a1ff019fe9
