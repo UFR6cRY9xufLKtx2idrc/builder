@@ -52,9 +52,7 @@ jobs:
           git revert 69e220463ac7110b87beaa7a0e3e124f38cecacd
           git revert c6960d314151ad6c03e9e5eea5a9dcea57e6035e
           git revert 46eb7311b2c75ac015e56fa165e6c99e757d0a71
-          git branch -a
           git remote add glide2 https://github.com/bumptech/glide
-          git remote
           git fetch glide2
           git branch -a
           git checkout master
