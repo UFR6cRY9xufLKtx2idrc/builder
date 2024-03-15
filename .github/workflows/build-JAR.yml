@@ -22,18 +22,19 @@ jobs:
           distribution: 'temurin'
           java-version: 8
           check-latest: true
-        
+
       - name: Clone project
         run: |
           git clone --depth=1 https://github.com/UFR6cRY9xufLKtx2idrc/glide
-        
-      - name: Build with Maven
+
+      - name: Gradle Build
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-home-cache-cleanup: true
+
+      - name: Build and run unit tests with Gradle
         working-directory: glide
-        run: |
-          pwd
-          cd integration
-          cd avif
-          mvn clean package -DskipTests
+        run: ./scripts/ci_unit.sh
 
       - name: Upload JAR file
         uses: actions/upload-artifact@v4
