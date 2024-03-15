@@ -29,27 +29,11 @@ jobs:
           cd glide
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
-          git revert e85c7656ccb908ab0bb6a4fd7706029a51048535
-          git revert 35bf5a58ae2a7662c1cdec8dab06d48795dba7d2
-          git revert 17620f51ddef06cbf96ea6fcfad137fd51332fd5
-          git revert e77562a432352da19741d93b8c1f6599b558676a
-          git revert c06a85d8427de557a1a04e0370e44007301bcf9b
-          git revert 75599b7af05eeca1393c8f4267adb78e88e7821e
-          git revert b1c6076bbbc3cc46d45f35924070cb11be44ff90
-          git revert 1863e6713a34507f584c4d1f2a061dd885b687ee
-          git revert f0d2b16034826757e4c68e5320b7707a8d43a289
-          git revert b3fd2bc1b68b988202e50fac757a318274c16be8
-          git revert 05d346557c284844fb85eedbd7c7db009591f0e8
-          git revert 9809d98fe43ae3d0593f3d710bb32af9bed72642
-          git revert e8d10fc3dabdb835be1db3779e961064ffec3291
-          git revert efc56f8bc03846706027076779cac33d489a680d
-          git revert 12c86e9a316bd774b77bc47b7fbed38a146d704b
-          git revert fe3b9128d75a9ae43c46b77e72a217ce3fc3e1e5
-          git revert bd2a519d7d8095a3a0e307486ddd6ed9bbb84e65
-          git revert 69e220463ac7110b87beaa7a0e3e124f38cecacd
-          git revert c6960d314151ad6c03e9e5eea5a9dcea57e6035e
-          git revert 46eb7311b2c75ac015e56fa165e6c99e757d0a71
+          git revert 193cf61354cc01f38b15bf1605905b49a19e6b7a
+          git revert fcace5be3c7edbc85af99183b64438997051b06c
+          git branch -a
           git remote add glide2 https://github.com/bumptech/glide
+          git remote
           git fetch glide2
           git branch -a
           git checkout master
