@@ -25,20 +25,20 @@ jobs:
 
       - name: Clone project
         run: |
-          git clone --depth=1 --branch=compose-alpha6 https://github.com/bumptech/glide.git
+          git clone --depth=1 --branch=master https://github.com/bumptech/glide.git
           cd glide
-          git checkout compose-alpha6
-          git branch | grep -v "compose-alpha6" | xargs git branch -D 
-          git add build.gradle
-          git add gradle.properties
-          git stash
+          git revert 193cf61354cc01f38b15bf1605905b49a19e6b7a^..46eb7311b2c75ac015e56fa165e6c99e757d0a71
+          git branch -a
           git remote add glide2 https://github.com/bumptech/glide
+          git remote
           git fetch glide2
-          git checkout compose-alpha6
+          git branch -a
+          git checkout master
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
           git cherry-pick 06fc8f689c0936ee570ed3e31ae2d6a1ff019fe9
           git cherry-pick 3bbc3908edd8432f55ccfae3257bad533c1bf7d1
+          git push origin --delete glide2
 
       - name: Gradle Build
         uses: gradle/actions/setup-gradle@v3
