@@ -29,8 +29,8 @@ jobs:
           cd glide
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
-          git revert --no-commit 3bbc390..193cf61
-          git revert --no-commit 06fc8f6..c06a85d
+          git revert -n master~7..master~1
+          git revert -n master~16..master~2
           git branch -a
           git remote add glide2 https://github.com/bumptech/glide
           git remote
