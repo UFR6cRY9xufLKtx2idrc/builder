@@ -27,7 +27,7 @@ jobs:
         run: |
           git clone --depth=1 --branch=master https://github.com/bumptech/glide.git
           cd glide
-          git revert 193cf61354cc01f38b15bf1605905b49a19e6b7a..46eb7311b2c75ac015e56fa165e6c99e757d0a71
+          git revert 193cf61354cc01f38b15bf1605905b49a19e6b7a...46eb7311b2c75ac015e56fa165e6c99e757d0a71
           git revert 193cf61354cc01f38b15bf1605905b49a19e6b7a
           git branch -a
           git remote add glide2 https://github.com/bumptech/glide
