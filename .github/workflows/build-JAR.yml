@@ -26,6 +26,9 @@ jobs:
       - name: Clone project
         run: |
           git clone --depth=1 --branch=compose-alpha6 https://github.com/bumptech/glide.git
+          git add build.gradle
+          git add gradle.properties
+          git stash
           git remote add glide2 https://github.com/bumptech/glide
           git fetch glide2
           git checkout compose_alpha_6
