@@ -25,7 +25,7 @@ jobs:
 
       - name: Clone project
         run: |
-          git clone --depth=1 --branch=compose-alpha6 https://github.com/bumptech/glide.git
+          git clone --depth=1 --branch=v4.15.1 https://github.com/bumptech/glide.git
           cd glide
           git add build.gradle
           git add gradle.properties
@@ -33,10 +33,13 @@ jobs:
           git remote add glide2 https://github.com/bumptech/glide
           git fetch glide2
           git log glide2/master
-          git checkout compose_alpha_6
+          git checkout v4.15.1
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
-          git cherry-pick 06fc8f689c0936ee570ed3e31ae2d6a1ff019fe9
+          git cherry-pick 0be8073f272ea9440640b4fb20595a30d76d541b
+          git cherry-pick 67d6067165b58ec0d9e4df1f4c7e682dc41f6461
+          git cherry-pick f78da0bdb627393d2d0d569959f74c5d7f143834
+          git cherry-pick a057dfee6f4a763a4f651af4adbea61d079aa97e
           git cherry-pick 3bbc3908edd8432f55ccfae3257bad533c1bf7d1
 
       - name: Gradle Build
