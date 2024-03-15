@@ -29,8 +29,8 @@ jobs:
           cd glide
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
-          git revert "193cf61354cc01f38b15bf1605905b49a19e6b7a"..."3bbc3908edd8432f55ccfae3257bad533c1bf7d1"
-          git revert "c06a85d8427de557a1a04e0370e44007301bcf9b"..."06fc8f689c0936ee570ed3e31ae2d6a1ff019fe9"
+          git revert "Clean up preserveGainmapAndColorSpaceForTransformations flag"..."avif: Use the correct bucket for GlideModule"
+          git revert "Make Placeholder a type that can be convered to Painter"..."Finish animation ignoring cancellation."
           git branch -a
           git remote add glide2 https://github.com/bumptech/glide
           git remote
