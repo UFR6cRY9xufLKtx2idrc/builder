@@ -28,7 +28,7 @@ jobs:
           git clone --depth=1 --branch=compose-alpha6 https://github.com/bumptech/glide.git
           cd glide
           git checkout compose-alpha6
-          git branch | xargs git branch -d
+          git branch | grep -v "compose-alpha6" | xargs git branch -D 
           git add build.gradle
           git add gradle.properties
           git stash
