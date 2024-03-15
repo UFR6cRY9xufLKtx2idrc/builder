@@ -36,7 +36,7 @@ jobs:
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
           git cherry-pick 0be8073f272ea9440640b4fb20595a30d76d541b
-          git cherry-pick 67d6067165b58ec0d9e4df1f4c7e682dc41f6461
+          git cherry-pick a057dfee6f4a763a4f651af4adbea61d079aa97e
           git cherry-pick 3bbc3908edd8432f55ccfae3257bad533c1bf7d1
 
       - name: Gradle Build
