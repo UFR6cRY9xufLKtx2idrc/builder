@@ -25,20 +25,7 @@ jobs:
 
       - name: Clone project
         run: |
-          git clone --depth=1 --branch=master https://github.com/bumptech/glide.git
-          cd glide
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          git reset --hard HEAD~24
-          git branch -a
-          git remote add glide2 https://github.com/bumptech/glide
-          git remote
-          git fetch glide2
-          git branch -a
-          git checkout master
-          git cherry-pick 06fc8f689c0936ee570ed3e31ae2d6a1ff019fe9
-          git cherry-pick 3bbc3908edd8432f55ccfae3257bad533c1bf7d1
-          git push origin --delete glide2
+          git clone --depth=1 --branch=master https://github.com/UFR6cRY9xufLKtx2idrc/glide.git
 
       - name: Gradle Build
         uses: gradle/actions/setup-gradle@v3
