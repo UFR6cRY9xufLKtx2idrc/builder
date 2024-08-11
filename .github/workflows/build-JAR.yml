@@ -28,7 +28,7 @@ jobs:
           git clone --depth=1 --branch=master https://github.com/UFR6cRY9xufLKtx2idrc/glide.git
 
       - name: Gradle Build
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
         with:
           gradle-home-cache-cleanup: true
 
