@@ -1,0 +1,91 @@
+name: PipePipe_build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 11
+          check-latest: true
+        
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        
+      - name: Clone project
+        run: |
+          git clone --depth=1 https://github.com/InfinityLoop1308/PipePipe project/PipePipe
+          git clone --depth=1 https://github.com/InfinityLoop1308/PipePipeClient project/PipePipeClient
+          git clone --depth=1 https://github.com/InfinityLoop1308/PipePipeExtractor project/PipePipeExtractor
+        
+      - name: Build the app
+        working-directory: ./project
+        run: |
+          cd PipePipeClient
+          if [ ! -f "gradlew" ]; then gradle wrapper; fi
+          chmod +x gradlew
+          ./gradlew assembleRelease --stacktrace
+
+      - name: Upload ARM64
+        uses: actions/upload-artifact@v4
+        with:
+          name: PipePipe-arm64-v8a-release-unsigned-${{ github.sha }}
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-arm64-v8a-release-unsigned.apk
+          if-no-files-found: error
+
+      - name: Upload ARM32
+        uses: actions/upload-artifact@v4
+        with:
+          name: PipePipe-armeabi-v7a-release-unsigned-${{ github.sha }}
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-armeabi-v7a-release-unsigned.apk
+          if-no-files-found: error
+
+      - name: Upload x86_64
+        uses: actions/upload-artifact@v4
+        with:
+          name: PipePipe-x86_64-release-unsigned-${{ github.sha }}
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-x86_64-release-unsigned.apk
+          if-no-files-found: error
+
+      - name: Upload x86
+        uses: actions/upload-artifact@v4
+        with:
+          name: PipePipe-arm64-x86-unsigned-${{ github.sha }}
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-x86-release-unsigned.apk
+          if-no-files-found: error
+
+      - name: Upload universal
+        uses: actions/upload-artifact@v4
+        with:
+          name: PipePipe-universal-release-unsigned-${{ github.sha }}
+          path: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-universal-release-unsigned.apk
+          if-no-files-found: error
+
+      - name: Rename Apks
+        run: |
+          sudo apt-get install rename
+          cd /home/runner/work/builder/builder/project/PipePipeClient/app/build/outputs/apk/release
+          rename -v 's/-release-unsigned\.apk/-release-unsigned-${{ github.run_number }}\.apk/' *
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: project/PipePipeClient/app/build/outputs/apk/release/PipePipe_*-release-unsigned-${{ github.run_number }}.apk
+          tag: ${{ github.ref }}-PipePipe
+          overwrite: true
+          file_glob: true
