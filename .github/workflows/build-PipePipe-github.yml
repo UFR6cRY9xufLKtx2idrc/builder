@@ -1,4 +1,4 @@
-name: PipePipe_build
+name: PipePipe_build-github
 
 on:
   workflow_dispatch:
