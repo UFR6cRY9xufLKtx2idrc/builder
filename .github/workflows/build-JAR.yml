@@ -37,7 +37,7 @@ jobs:
         run: ./scripts/ci_unit.sh
 
       - name: Upload JAR file
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: avif-integration
           path: /home/runner/work/builder/builder/glide/integration/avif/build/outputs/aar/avif-release.aar
