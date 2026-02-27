@@ -52,7 +52,7 @@ jobs:
           pathTarget: ./release.7z
 
       - name: Upload APK
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: my-build-apk.7z
           path: release.7z
